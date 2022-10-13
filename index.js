@@ -10,6 +10,7 @@ async function run() {
     const containerName = core.getInput('container-name', { required: true });
     const imageURI = core.getInput('image', { required: true });
 
+    const entryPoint = core.getInput('entry-point', { required: false });
     const environmentVariables = core.getInput('environment-variables', { required: false });
 
     // Parse the task definition
@@ -32,6 +33,10 @@ async function run() {
       throw new Error('Invalid task definition: Could not find container definition with matching name');
     }
     containerDef.image = imageURI;
+
+    if (entryPoint) {
+      containerDef.entryPoint = entryPoint.split(" ");
+    }
 
     if (environmentVariables) {
 

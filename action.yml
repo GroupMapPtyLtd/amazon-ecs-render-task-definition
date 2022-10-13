@@ -13,6 +13,9 @@ inputs:
   image:
     description: 'The URI of the container image to insert into the ECS task definition'
     required: true
+  entry-point:
+    description: 'Override the container definition entry point.'
+    required: false
   environment-variables:
     description: 'Variables to add to the container. Each variable is of the form KEY=value, you can specify multiple variables with multi-line YAML strings.'
     required: false
